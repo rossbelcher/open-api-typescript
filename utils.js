@@ -1,4 +1,4 @@
-exports.getType = function (property) {
+function getType(property) {
     var returnType;
     if (property.type) {
         switch (property.type) {
@@ -44,6 +44,8 @@ exports.getType = function (property) {
         }
     }
 }
+
+exports.getType = getType;
 
 exports.uncapitalize = function (s) {
     if (typeof s !== 'string') return ''
