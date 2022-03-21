@@ -1,6 +1,6 @@
 {
   "name": "@rossbelcher/open-api-typescript",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "NPM package to generate typescript definitions and API classes from OpenApi model",
   "main": "index.js",
   "scripts": {
