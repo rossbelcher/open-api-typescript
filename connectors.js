@@ -1,3 +1,5 @@
+var fs = require('fs');
+var writeFile = fs.writeFile;
 const { capitalize, getType, uncapitalize } = require("./utils");
 
 var FetchClass = `class FetchJSON {
