@@ -1,0 +1,21 @@
+{
+  "name": "@rossbelcher/open-api-typescript",
+  "version": "1.0.1",
+  "description": "NPM package to generate typescript definitions and API classes from OpenApi model",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "swagger",
+    "typescript",
+    "openApi",
+    "api",
+    "classes"
+  ],
+  "author": "Ross Belcher",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
