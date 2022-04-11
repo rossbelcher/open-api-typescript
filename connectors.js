@@ -71,6 +71,7 @@ exports.genPaths = function(paths, savePath) {
       responseTypes.forEach(responseType => {
         var paramList = [];
         var response;
+        
         if (paths[key][responseType].requestBody) {
           var param = paths[key][responseType].requestBody.content['application/json']
           if (param.schema) {
@@ -88,6 +89,10 @@ exports.genPaths = function(paths, savePath) {
           param.name = 'requestBody';
           param.in = 'body';
           if (param.type) paramList.push(param);
+        } else if (paths[key][responseType].parameters) {
+          paths[key][responseType].parameters.forEach(param => {
+            paramList.push(param)
+          });
         }
         var okResponse = paths[key][responseType].responses['200'];
         if (okResponse.content && okResponse.content['application/json'].schema) {
