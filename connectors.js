@@ -25,10 +25,10 @@ var FetchClass = `class FetchJSON {
             })
           } else if (xhr.status === 204) {
             resolve(undefined);
-          } else if (xhr.status === 400) {
+          } else if (xhr.status >= 400) {
             try {
               const data: any = xhr?.response !== null && xhr?.response !== undefined ? JSON.parse(xhr.response) : null;
-              resolve(data);
+              reject(data);
             } catch {
               reject(undefined);
             }
