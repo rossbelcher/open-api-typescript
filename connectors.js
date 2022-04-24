@@ -50,6 +50,10 @@ var FetchClass = `class FetchJSON {
       });
     }
   }
+
+  function clone(object) {
+    return JSON.parse(JSON.stringify(object))
+  }
   `
 
 exports.genPaths = function(paths, savePath) {
@@ -180,6 +184,14 @@ exports.genPaths = function(paths, savePath) {
           }
           output += '): Promise<' + (method.response ? method.response : 'undefined') + ' | null> {\n';
           output += '    let data = null;\n';
+          if (method.paramList.length > 0 && method.responseType.toUpperCase() === 'GET') {
+            output += '    if (typeof(' + method.paramList[0].name + ') == "object" && ' + method.paramList[0].name + ' !== null) {\n';
+            output += '       let paramData = clone(' + method.paramList[0].name + ');\n';
+            method.paramList.forEach(param => {
+              output += '       ' + param.name + ' = paramData["' + param.name + '"];\n';
+            });
+            output += '    }\n';
+          }
           output += "    await FetchJSON.fetch(`" + method.path + "`, '" + method.responseType.toUpperCase() + "'";
           var postData = method.paramList.find(x => x.in === 'body');
           if (postData) {
